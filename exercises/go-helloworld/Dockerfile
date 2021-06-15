@@ -1,7 +1,7 @@
 FROM golang:alpine
 LABEL description="Udacity sample for Docker walkthrough"
 WORKDIR /go/src/app
-COPY . /go/src/app
+COPY . .
 # Required during build attempt
 # For tracking code dependencies
 RUN go mod init 
