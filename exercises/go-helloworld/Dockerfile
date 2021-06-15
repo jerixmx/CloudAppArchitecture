@@ -7,6 +7,5 @@ COPY . /go/src/app
 RUN go mod init 
 
 RUN go build -o helloworld
-EXPOSE 6111/tcp
-EXPOSE 6111/udp
+EXPOSE 6111
 CMD ["helloworld"]
