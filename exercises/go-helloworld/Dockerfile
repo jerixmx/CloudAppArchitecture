@@ -1,5 +1,6 @@
 FROM golang:alpine
-LABEL description="Udacity sample for Docker walkthrough"
+LABEL description="Udacity sample for Docker walkthrough" \
+    version="1.0.1"
 WORKDIR /go/src/app
 COPY . .
 # Required during build attempt
