@@ -1,6 +1,6 @@
 FROM golang:alpine
 LABEL description="Udacity sample for Docker walkthrough" \
-    version="1.0.2"
+    version="2.0.0"
 WORKDIR /go/src/app
 COPY . .
 # Required during build attempt
@@ -8,5 +8,5 @@ COPY . .
 RUN go mod init 
 
 RUN go build -o helloworld
-EXPOSE 6111
+EXPOSE 6112
 CMD ["./helloworld"]
