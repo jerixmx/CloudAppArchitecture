@@ -14,11 +14,11 @@ spec:
     - port: 8111
       protocol: TCP
       targetPort:
-        ? .Values.service.port: ~
+        ? .Values.port: ~
         : ~
   selector:
     app: nginx
     tag: alpine
   type:
-    ? .Values.service.type: ~
+    ? .Values.service: ~
     : ~

@@ -3,10 +3,7 @@ data:
   version: '1.17.0'
 image:
   tag: '1.17.0'
-namespace:
-  name: prod
+namespace: prod
 replicas: 2
-resources:
-  cpu: 70m
-service:
-  port: 80
+cpu: 70m
+port: 80

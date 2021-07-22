@@ -1,16 +1,11 @@
 ---
-data:
-  version: alpine
-image:
-  PullPolicy: IfNotPresent
-  repository: nginx
-  tag: alpine
-namespace:
-  name: demo
+version: alpine
+PullPolicy: IfNotPresent
+repository: nginx
+tag: alpine
+namespace: demo
 replicas: 3
-resources:
-  cpu: 50m
-  memory: 256Mi
-service:
-  port: 8111
-  type: ClusterIP
+cpu: 50m
+memory: 256Mi
+port: 8111
+service: ClusterIP

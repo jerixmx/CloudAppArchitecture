@@ -29,18 +29,18 @@ spec:
         tag: alpine
     spec:
       containers:
-        - image: 'nginx:{{ .Values.image.tag }}'
+        - image: 'nginx:{{ .Values.tag }}'
           imagePullPolicy:
-            ? .Values.image.PullPolicy: ~
+            ? .Values.PullPolicy: ~
             : ~
           name:
-            ? .Values.image.name: ~
+            ? .Values.repository: ~
             : ~
           resources:
             requests:
               cpu:
-                ? .Values.resources.cpu: ~
+                ? .Values.cpu: ~
                 : ~
               memory:
-                ? .Values.resources.memory: ~
+                ? .Values.memory: ~
                 : ~

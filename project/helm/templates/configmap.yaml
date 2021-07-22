@@ -2,7 +2,7 @@
 apiVersion: v1
 data:
   version:
-    ? .Values.data.version: ~
+    ? .Values.version: ~
     : ~
 kind: ConfigMap
 metadata:
