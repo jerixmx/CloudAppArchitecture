@@ -1,5 +1,5 @@
 ---
-version: alpine
+data: 'version: alpine'
 PullPolicy: IfNotPresent
 repository: nginx
 tag: alpine
