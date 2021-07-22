@@ -1,15 +1,10 @@
-namespace:
-  name: 'staging'
-replicas: 1
-image:
-  # repository: nginx
-  tag: 1.18.0
-  # PullPolicy: IfNotPresent
-resources:
-  # cpu: 50m
-  memory: 128Mi
-# service:
-#   type: ClusterIP
-#   port: 8111
+---
 data:
   version: '1.18.0'
+image:
+  tag: '1.18.0'
+namespace:
+  name: staging
+replicas: 1
+resources:
+  memory: 128Mi
