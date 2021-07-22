@@ -11,4 +11,5 @@ resources:
 # service:
 #   type: ClusterIP
 #   port: 8111
-data: 'version: 1.18.0'
+data:
+  version: '1.18.0'
