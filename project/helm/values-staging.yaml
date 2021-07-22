@@ -1,5 +1,5 @@
 namespace:
-  name: staging
+  name: 'staging'
 replicas: 1
 image:
   # repository: nginx

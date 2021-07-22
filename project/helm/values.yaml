@@ -1,14 +1,14 @@
 namespace:
-  name: demo
+  name: 'demo'
 replicas: 3
 image:
-  repository: nginx
-  tag: alpine
-  PullPolicy: IfNotPresent
+  repository: 'nginx'
+  tag: 'alpine'
+  PullPolicy: 'IfNotPresent'
 resources:
   cpu: 50m
   memory: 256Mi
 service:
-  type: ClusterIP
+  type: 'ClusterIP'
   port: 8111
 data: 'version: alpine'
