@@ -1,5 +1,4 @@
-namespace:
-  name: demo
+namespace: demo
 replicas: 3
 image:
   repository: nginx
