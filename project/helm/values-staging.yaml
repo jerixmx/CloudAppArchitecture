@@ -1,6 +1,15 @@
----
-data: "version: '1.18.0'"
-tag: '1.18.0'
-namespace: staging
+namespace:
+  name: staging
 replicas: 1
-memory: 128Mi
+image:
+  # repository: nginx
+  tag: 1.18.0
+  # PullPolicy: IfNotPresent
+resources:
+  # cpu: 50m
+  memory: 128Mi
+# service:
+#   type: ClusterIP
+#   port: 8111
+data:
+  version: '1.18.0'
