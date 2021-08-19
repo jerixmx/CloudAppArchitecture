@@ -1,4 +1,5 @@
 import sqlite3
+import logging
 
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 from werkzeug.exceptions import abort
@@ -22,6 +23,10 @@ def get_post(post_id):
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your secret key'
 
+# Logging configuration
+FORMAT = '%(asctime)s, %(message)s'
+logging.basicConfig(filename='app.log', level=logging.DEBUG, format = FORMAT, datefmt=('%m/%d/%Y, %H:%M:%S'))
+
 # Define the main route of the web application 
 @app.route('/')
 def index():
@@ -38,7 +43,9 @@ def post(post_id):
     if post is None:
       return render_template('404.html'), 404
     else:
+      logging.debug('Article {post.title} retrieved!')
       return render_template('post.html', post=post)
+    
 
 # Define the About Us page
 @app.route('/about')
@@ -64,6 +71,30 @@ def create():
             return redirect(url_for('index'))
 
     return render_template('create.html')
+
+# Define route for status checking
+@app.route("/healthz")
+def status():
+    response = app.response_class(
+        response=json.dumps({"result" : "OK - healthy"}),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+# Define route for posts and connections metrics
+@app.route("/metrics")
+def metrics():
+    response = app.response_class(
+        # TODO: Create/Look for function to get these values
+        response=json.dumps({
+            "db_connection_count" : 1,
+            "post_count" : 7,
+        }),
+        status=200,
+        mimetype='application/json'
+        )
+    return response
 
 # start the application on port 3111
 if __name__ == "__main__":
