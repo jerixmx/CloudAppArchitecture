@@ -4,11 +4,16 @@ import logging
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 from werkzeug.exceptions import abort
 
+db_connection_count = 0
+post_count = 0
+
 # Function to get a database connection.
 # This function connects to database with the name `database.db`
 def get_db_connection():
     connection = sqlite3.connect('database.db')
     connection.row_factory = sqlite3.Row
+    global db_connection_count
+    db_connection_count += 1
     return connection
 
 # Function to get a post using its ID
@@ -24,7 +29,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your secret key'
 
 # Logging configuration
-FORMAT = '%(asctime)s, %(message)s'
+FORMAT = '%(levelname)s:%(module)s:%(asctime)s, %(message)s'
 logging.basicConfig(filename='app.log', level=logging.DEBUG, format = FORMAT, datefmt=('%m/%d/%Y, %H:%M:%S'))
 
 # Define the main route of the web application 
@@ -32,6 +37,8 @@ logging.basicConfig(filename='app.log', level=logging.DEBUG, format = FORMAT, da
 def index():
     connection = get_db_connection()
     posts = connection.execute('SELECT * FROM posts').fetchall()
+    global post_count
+    post_count = len(posts)
     connection.close()
     return render_template('index.html', posts=posts)
 
@@ -43,7 +50,7 @@ def post(post_id):
     if post is None:
       return render_template('404.html'), 404
     else:
-      logging.debug('Article {post.title} retrieved!')
+      logging.info('Article "%s" retrieved!', post["title"])
       return render_template('post.html', post=post)
     
 
@@ -88,8 +95,8 @@ def metrics():
     response = app.response_class(
         # TODO: Create/Look for function to get these values
         response=json.dumps({
-            "db_connection_count" : 1,
-            "post_count" : 7,
+            "db_connection_count" : db_connection_count,
+            "post_count" : post_count,
         }),
         status=200,
         mimetype='application/json'
