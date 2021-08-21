@@ -64,6 +64,7 @@ def index():
 def post(post_id):
     post = get_post(post_id)
     if post is None:
+        logging.error("Attempted to retrieve non-existing article.")
         return render_template("404.html"), 404
     else:
         logging.info('Article "%s" retrieved!', post["title"])
@@ -73,6 +74,7 @@ def post(post_id):
 # Define the About Us page
 @app.route("/about")
 def about():
+    logging.info('"About Us" page retrieved!')
     return render_template("about.html")
 
 
@@ -92,7 +94,7 @@ def create():
             )
             connection.commit()
             connection.close()
-
+            logging.info('New article "%s" created!', title)
             return redirect(url_for("index"))
 
     return render_template("create.html")
