@@ -1,5 +1,6 @@
 import sqlite3
 import logging
+import sys
 
 from flask import (
     Flask,
@@ -38,12 +39,18 @@ def get_post(post_id):
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "your secret key"
 
-# Logging configuration
+# Set logging stream handler
+stdoutHandler = logging.StreamHandler(stream=sys.stdout)
+stdoutHandler.setLevel(logging.DEBUG)
+stderrHandler = logging.StreamHandler(stream=sys.stderr)
+stderrHandler.setLevel(logging.ERROR)
+
+# Configure logs
 FORMAT = "%(levelname)s:%(module)s:%(asctime)s, %(message)s"
 logging.basicConfig(
-    filename="app.log",
-    level=logging.DEBUG,
     format=FORMAT,
+    level=logging.DEBUG,
+    handlers=[stdoutHandler, stderrHandler],
     datefmt=("%m/%d/%Y, %H:%M:%S"),
 )
 
