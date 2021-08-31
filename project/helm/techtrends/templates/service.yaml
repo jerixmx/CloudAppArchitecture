@@ -6,9 +6,9 @@ metadata:
   name: techtrends
 spec:
   ports:
-    port: '{ { .Values.service.port } }'
-    protocol: '{ { .Values.service.protocol } }'
-    targetPort: '{ { .Values.service.targetPort } }'
+    - port: '{ { int .Values.service.port } }'
+      protocol: '{ { .Values.service.protocol } }'
+      targetPort: '{ { int .Values.service.targetPort } }'
   selector:
     app: techtrends
   type: '{ { .Values.service.type } }'

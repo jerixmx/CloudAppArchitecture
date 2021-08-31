@@ -21,7 +21,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy}}
           name: techtrends
           ports:
-            - containerPort: '{ { .Values.containerPort } }'
+            - containerPort: '{ { int .Values.containerPort } }'
           resources:
             requests:
               cpu: '{ { .Values.resources.requests.CPU } }'
@@ -32,12 +32,12 @@ spec:
           readinessProbe:
             httpGet:
               path: '{ { .Values.readinessProbe.path } }'
-              port: '{ { .Values.service.targetPort } }'
+              port: '{ { int .Values.service.targetPort } }'
             initialDelaySeconds: 5
             periodSeconds: 10
           livenessProbe:
             httpGet:
               path: '{ { .Values.livenessProbe.path } }'
-              port: '{ { .Values.service.targetPort } }'
+              port: '{ { int .Values.service.targetPort } }'
             initialDelaySeconds: 15
             periodSeconds: 20
