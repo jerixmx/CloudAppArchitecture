@@ -21,23 +21,23 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy}}
           name: techtrends
           ports:
-            - containerPort: '{ { .Values.containerPort } }'
+            - containerPort: {{ .Values.containerPort }}
           resources:
             requests:
-              cpu: '{ { .Values.resources.requests.CPU } }'
-              memory: '{ { .Values.resources.requests.memory } }'
+              cpu: '{{ .Values.resources.requests.CPU }}'
+              memory: '{{ .Values.resources.requests.memory }}'
             limits:
-              cpu: '{ { .Values.resources.limits.CPU } }'
-              memory: '{ { .Values.resources.limits.memory } }'
+              cpu: '{{ .Values.resources.limits.CPU }}'
+              memory: '{{ .Values.resources.limits.memory }}'
           readinessProbe:
             httpGet:
-              path: '{ { .Values.readinessProbe.path } }'
-              port: '{ { .Values.service.targetPort } }'
+              path: '{{ .Values.readinessProbe.path }}'
+              port: {{ .Values.service.targetPort }}
             initialDelaySeconds: 5
             periodSeconds: 10
           livenessProbe:
             httpGet:
-              path: '{ { .Values.livenessProbe.path } }'
-              port: '{ { .Values.service.targetPort } }'
+              path: '{{ .Values.livenessProbe.path }}'
+              port: {{ .Values.service.targetPort }}
             initialDelaySeconds: 15
             periodSeconds: 20
