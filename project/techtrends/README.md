@@ -2,10 +2,15 @@
 
 TechTrends is a news sharing platform where users can access, create, and share news within the cloud-native ecosystem.
 
+
+https://user-images.githubusercontent.com/78225194/132833632-584c18ac-1b01-4a53-a041-0b4f4564f992.mp4
+
+
+
 ## Project Specifications
 1. Health checking via the `/healthz` endpoint
 2. Metrics access via the `/metrics` endpoint which returns the number of posts and database connections
-3. DEBUG level logging in STDOUT & STDERR of events
+3. DEBUG level logging in STDOUT & STDERR of the following events:
     1. Accessing an article
     2. Accessing the About page
     3. Creation of a new article
