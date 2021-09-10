@@ -1,0 +1,9 @@
+apiVersion: v1
+name: techtrends
+description: TechTrends Website
+keywords:
+  - techtrends
+version: 1.0.0
+maintainers:
+  - name: jerixmx
+    email: jerixmx@gmail.com
