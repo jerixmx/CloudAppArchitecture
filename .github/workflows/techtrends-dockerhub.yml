@@ -24,5 +24,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./project
+          # required to be specified by Project assessment
+          # but this is the default Dockerfile location
+          file: ./project/Dockerfile
           push: true
           tags: jerixmx/techtrends:latest
